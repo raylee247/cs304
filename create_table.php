@@ -5,7 +5,7 @@
 			include 'template.php';
 			
 			if($db_conn){
-				echo "<br> CREATING TABLES <br>";
+				/*echo "<br> CREATING TABLES <br>";
 				echo "<br> 1 <br>";
 				executePlainSQL ("DROP TABLE type_is");
 				executePlainSQL("CREATE TABLE type_is (tname varchar(30),
@@ -41,9 +41,18 @@
 				echo "<br> 4 <br>";		
 				executePlainSQL ("DROP TABLE pokemon");
 				executePlainSQL ("CREATE TABLE pokemon (pid number(3,0),
-														name varchar(50),
+														tname varchar(30),
 														picture varchar(255),
-														PRIMARY KEY (pid))");
+														PRIMARY KEY (pid),
+														FOREIGN KEY (tname) REFERENCES type_is(tname))");
+				//executePlainSQL ("insert into pokemon values (1,1,1)");	
+				//executePlainSQL ("delete from pokemon where pid = 1");
+				echo "<br> all tables <br>";
+				$result = executePlainSQL ("SELECT table_name FROM all_tables");
+				printResult($result);
+				echo "<br> pid form pokemon <br>";
+				$result2 = executePlainSQL ("select pid  from pokemon ");
+				
 				echo "<br> 5 <br>";
 				executePlainSQL ("DROP TABLE evolve");
 				executePlainSQL ("CREATE TABLE evolve (pid number(3,0),
@@ -72,6 +81,7 @@
 				executePlainSQL ("CREATE TABLE trainer (tid varchar(255),
 												party varchar(255) NOT NULL,
 												PRIMARY KEY (tid))");
+				executePlainSQL ("insert into trainer values (1,1)");
 				echo "<br> 9 <br>";
 				executePlainSQL ("DROP TABLE challenge");
 				executePlainSQL ("CREATE TABLE challenge (entry number(20,0),
@@ -97,6 +107,7 @@
 													type varchar(255),
 													Description varchar(255),
 													PRIMARY KEY (iid))");
+				executePlainSQL ("insert into item values (1,1,1)");
 				echo "<br> 13 <br>";
 				executePlainSQL ("DROP TABLE item_loc");
 				executePlainSQL ("CREATE TABLE item_loc (iid varchar(255),
@@ -107,8 +118,9 @@
 				executePlainSQL ("CREATE TABLE location (lname varchar(255),
 														description varchar(255),
 														PRIMARY KEY (lname))");
+				executePlainSQL ("insert into location values (1,1)");
 														
-			 	OCILogoff($db_conn);
+			 	OCILogoff($db_conn);*/
 			} 
 			else {
 				echo "cannot connect";
