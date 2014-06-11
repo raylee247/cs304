@@ -27,7 +27,6 @@
 				} else {
 
 				}
-				echo "batman";
 				return $statement;
 
 			}
