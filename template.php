@@ -30,6 +30,18 @@
 				return $statement;
 
 			}
+			function printResult($result) { //prints results from a select statement
+				echo "<table>";
+
+				while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+					for ($i = 0; $i < 15; $i++){
+						echo "<tr><td>" . $row[$i] . "</td></tr>"; //or just use "echo $row[0]" 
+					}
+					
+				}
+				echo "</table>";
+
+			}
 		?>
 	</p>
 </html>
