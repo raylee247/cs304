@@ -33,7 +33,7 @@ $x=0;
 foreach($xml as $key)
 {
 //Every Attribute - 
-// EDIT THIS PART TO PARSE EVERYTHING/ ANTHING
+// EDIT THIS PART TO PARSE EVERYTHING/ ANYTHING
 
 $PID[$x] = $key->PID;
 $Name[$x] = $key->Name;
