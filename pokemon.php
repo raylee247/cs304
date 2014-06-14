@@ -1,33 +1,38 @@
 <html>
 <?php
 	require 'template.php';
-	echo $header;
+	session_start();
+	//require 'index.php';
+	//echo $header;
 ?>
-		<body class="loading">
-		<div id="wrapper">
-			<div id="bg"></div>
-			<div id="overlay"></div>
-			<div id="main">
-				<!-- Header -->
-					<header id="pokemon">
-					<?php
-						$result = executePlainSQL("select * from pokemon");
-						echo '<table>';
-						while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-							for($i = 0; $i <= 1; $i++){
-								echo "<tr><td>" . $row[$i] . "</td></tr>"; 
-							}
-							//echo '<tr><img src="' . $row[2] . '" alt="picture"></tr>';
-						}
-						echo '</table>';
-					?>
-					</header>
-				<!-- Footer -->
-					<footer id="footer">
-						<span class="copyright">copyright @ PokeGuide 2014</span>
-					</footer>
-				
-			</div>
-		</div>
-	</body>
+
+<form name="input" action="pokemon.php" method="get">
+Pokemon: <input type="text" name="pokemon">
+<input type="submit" value="search">
+</form> 
+
+<?php
+
+//SEARCH
+	$pokemon = ucfirst($_GET["pokemon"]);
+	if($pokemon != null){
+		//$pokemon = ucfirst($_POST["pokemon"]);
+		$result = executePlainSQL("select * from pokemon where name = '" . $pokemon . "'");
+	}
+	else{
+		$result = executePlainSQL("select * from pokemon");
+	}
+	printPoke($result);
+	
+//Print result	
+function printPoke($result){
+	echo '<table>';
+	echo '<tr><td>PID</td><td>Name</td><td>Image</td></tr>';
+	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+		echo "<tr><td>" . $row[0] . "</td><td><a href = profile.php?name=" . $row[1] . ">" . $row[1] . "</a></td><td>" . '<img src="' . $row[2] . '" alt="picture">' . "</td></tr>";
+		//echo '<tr><img src="' . $row[2] . '" alt="picture"></tr>';								
+	}//<a href="pokemon.php" class="classname">Pokemon</a>
+	echo '</table>';
+}
+?>
 </html>
