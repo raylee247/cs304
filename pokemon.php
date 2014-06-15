@@ -6,11 +6,31 @@
 	//echo $header;
 ?>
 
+ 		<!-- Header -->
+					<header id="menu">
+                	<nav>
+               		 <ul>
+                		<li><a href="index.php" class="classname">Back To Home</a></li>
+                	</ul>
+                    </nav>
+						<nav>
+							<ul>
+                            <li><a href="pokemon.php" class="classname">Pokemon</a></li>
+							  <li><a href="location.php" class="classname">Location</a></li>
+								<li><a href="trainers.php" class="classname">Trainers</a></li>
+                                <li> <a href="items.php" class="classname">Items</a></li>
+                               <li><a href="types.php" class="classname">Types</a>
+                               <li><a href="teamBuilder.php" class="classname"> Team Buidler </a></li>
+							</ul>
+						</nav>
+					</header>
+                    
 <form name="input" action="pokemon.php" method="get">
 Pokemon: <input type="text" name="pokemon">
 <input type="submit" value="search">
 </form> 
-
+ 
+ 
 <?php
 
 //SEARCH
