@@ -11,13 +11,14 @@ Pokemon: <input type="text" name="pokemon">
 <input type="submit" value="search">
 </form> 
 
+
 <?php
 
 //SEARCH
 	$pokemon = ucfirst($_GET["pokemon"]);
 	if($pokemon != null){
 		//$pokemon = ucfirst($_POST["pokemon"]);
-		$result = executePlainSQL("select * from pokemon where name = '" . $pokemon . "'");
+		$result = executePlainSQL("select * from pokemon where tname = '" . $pokemon . "'");
 	}
 	else{
 		$result = executePlainSQL("select * from pokemon");
