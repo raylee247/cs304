@@ -69,18 +69,20 @@ Trainer Name: <input type="text" name="trainer">
 		$trainer_info = executePlainSQL("SELECT * FROM trainer WHERE tid = '" . $trainer ."' OR tid LIKE '%" . $trainer . "%'");
 		$name = OCI_Fetch_Array($trainer_info, OCI_BOTH);
 		//echo $name[0];
-	
+
+
 		
 		//FIND TRAINER LOCATIONS
 		$loc = executePlainSQL("SELECT lname FROM live l WHERE l.tid LIKE '%"  . $trainer . "%' OR l.tid = '" . $trainer . "'");
 		$location = OCI_Fetch_Array($loc, OCI_BOTH);
 		//echo $location[0];
-		//
-		$party = explode("," , $name[1]);
+	
+		//$party = explode("," , $name[1]);
 		
 		
 		//Display information of each trainer that contains %trainer%
 		if($count[0] == 1){
+			$party = explode("," , $name[1]);
 			echo "<br>Name:" . $name[0] . "<br>";
 			echo "<br>Location:" . $location[0] . "<br>";
 			echo "Party:";
@@ -93,16 +95,16 @@ Trainer Name: <input type="text" name="trainer">
 		}			
 		if($count[0] > 1){
 			while($row = OCI_Fetch_Array($trainer_info, OCI_BOTH)){
-			
-			echo "<br>Name:" . $row[0] . "<br>";
-			echo "<br>Location:" . $location[0] . "<br>";
-			echo "Party:";
-			for($i = 0; $i < count($party); $i++){
-				echo "<tr><td>";
-				$result = executePlainSQL("SELECT * FROM pokemon WHERE pid = '" . $party[$i] . "'");
-				printPoke($result);
-				echo "</td></tr>";
-				}
+				echo "<br>Name:" . $row[0] . "<br>";
+				echo "<br>Location:" . $location[0] . "<br>";
+				echo "Party:";
+				$party = explode(',' , $row[1]);
+				for($i = 0; $i < count($party); $i++){
+					echo "<tr><td>";
+					$result = executePlainSQL("SELECT * FROM pokemon WHERE pid = '" . $party[$i] . "'");
+					printPoke($result);
+					echo "</td></tr>";
+					}
 			}
 		}
 		
