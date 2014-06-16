@@ -4,7 +4,7 @@
 	session_start();
 	ini_set('session.save_path', '/home/i/i5a8/');
 	?>
-    
+   
     <link rel="stylesheet" href="cssmain/table.css" />
     
                 <head>
@@ -58,7 +58,7 @@ Search Items: <input type="text" name="item"> with
 	
 function printItem($result){
 	echo "<div class='CSSTableGenerator'>";
-	echo "<table border = 1>";
+	echo "<table>";
 	echo "<tr><th>IID</th><th>Type</th><th>Description</th></tr>";
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
 		echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td></tr>";																	
