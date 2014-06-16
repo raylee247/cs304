@@ -5,8 +5,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<?php
-	$header = '<head>
+	<head>
 		<title>PokeGuide</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
@@ -22,9 +21,8 @@
 		</noscript>
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-	</head>'
-	echo $header;
-	?>
+	</head>
+	
 	<body class="loading">
 		<div id="wrapper">
 			<div id="bg"></div>
@@ -40,10 +38,10 @@
 							<li><a href="pokemon.php" class="classname">Pokemon</a></li>
 							  <li><a href="location.php" class="classname">Location</a></li>
 							  <li><a href="moves.php" class="classname">Moves</a></li>
-							 <li> <a href="items.php" class="classname">Items</a></li>
+								<li><a href="items.php" class="classname">Items</a></li>
 								<li><a href="trainers.php" class="classname">Trainers</a></li>
-                               <li><a href="types.php" class="classname">Types</a>
-                               <li><a href="teamBuilder.php" class="classname"> Team Buidler </a></li>
+                               <li><a href="types.php" class="classname">Types</a></li>
+                               <li><a href="teamBuilder.php" class="classname"> Team Builder</a>
 							</ul>
 						</nav>
 					</header>
