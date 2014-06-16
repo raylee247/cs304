@@ -7,6 +7,8 @@
 <html>
 	<?php
 	echo $header;
+	require 'template.php';
+	session_start();
 	?>
 
 				<!-- Header -->
@@ -27,11 +29,7 @@
 							</ul>
 						</nav>
 					</header>
-                
-<form name="input" action="trainers.php" method="get">
-Trainer: <input type="text" name="trainer">
-<input type="submit" value="search">
-</form> 
+
 				<body>
                 		<table>
                         <thead>
@@ -52,24 +50,59 @@ Trainer: <input type="text" name="trainer">
                    		 </tbody>
                      	 </table>
                 	 </body>
-<?php
 
-//SEARCH
-	$trainer = ucfirst($_GET["trainer"]);
+<form name="input" action="trainers.php" method="get">
+Trainer Name: <input type="text" name="trainer">
+<input type="submit" value="search">
+</form> 
+ 
+<?php
+	$trainer = ucfirst(strtolower($_GET["trainer"]));
 	if($trainer != null){
-		$result = executePlainSQL("select * from trainer where tid = '" . $trainer . "'");
+		echo "<br>Search for " . $_GET["trainer"] . "<br>";  
+		//Finds trainers 	
+		$search_result = executePlainSQL("SELECT COUNT(*) FROM trainer WHERE tid = '" . $trainer ."' OR tid LIKE '%" . $trainer . "%'");
+		$count = OCI_Fetch_Array($search_result, OCI_BOTH);
+		echo "<br>" . $count[0] . " results found <br>";
+		
+		//FIND TRAINER VALUES - GRAB THE LIST OF POKEMON
+		$trainer_info = executePlainSQL("SELECT * FROM trainer WHERE tid = '" . $trainer ."' OR tid LIKE '%" . $trainer . "%'");
+		$name = OCI_Fetch_Array($trainer_info, OCI_BOTH);
+		
+	
+		
+		//FIND TRAINER LOCATIONS
+		$loc = executePlainSQL("SELECT lname FROM live l WHERE l.tid LIKE '%"  . $trainer . "%' OR l.tid = '" . $trainer . "'");
+		$location = OCI_Fetch_Array($loc, OCI_BOTH);
+
+		//
+		$party = explode("," , $name[1]);
+		
+		
+		//Display information of each trainer that contains %$trainer%
+		while($row = OCI_Fetch_Array($trainer_info, OCI_BOTH)){
+		
+		echo "<br>Name:" . $row[0] . "<br>";
+		echo "<br>Location:" . $location[0] . "<br>";
+		echo "Party";
+		for($i = 0; $i < count($party); $i++){
+			echo "<tr><td>";
+			$result = executePlainSQL("SELECT * FROM pokemon WHERE pid = '" . $party[$i] . "'");
+			printPoke($result);
+			echo "</td></tr>";
+			}
+		}
 	}
 	else{
-		$result = executePlainSQL("select * from trainer");
+		$regular = executePlainSQL("SELECT tid FROM trainer ORDER BY tid");
+		printResult($regular);
 	}
-	printItem($result);
 	
-//Print result	
-function printMoves($result){
+function printPoke($result){
 	echo '<table>';
-	echo '<tr><td>tid</td><td>party</td><td>Password</td></tr>';
+	echo '<tr><td>Name</td><td>Image</td></tr>';
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-		//echo "<tr><td>" . $row[0] . "</td><td><a href = profile.php?name=" . $row[1] . ">" . $row[1] . "</a></td><td>" . '<img src="' . $row[2] . '" alt="picture">' . "</td></tr>";
+		echo "<tr><td><a href = profile.php?name=" . $row[1] . ">" . $row[1] . "</a></td><td>" . '<img src="' . $row[2] . '" alt="picture">' . "</td></tr>";
 		//echo '<tr><img src="' . $row[2] . '" alt="picture"></tr>';								
 	}//<a href="pokemon.php" class="classname">Pokemon</a>
 	echo '</table>';

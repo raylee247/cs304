@@ -28,8 +28,8 @@
 
 				}
 				return $statement;
-
 			}
+			
 			function printResult($result) { //prints results from a select statement
 				echo "<table>";
 
