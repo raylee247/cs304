@@ -6,7 +6,7 @@ INSERT INTO moves VALUES('Amnesia','PSYCHIC','20','Sharply raises uses Special D
 INSERT INTO moves VALUES('Aurora Beam','ICE','20','May lower opponens Attack.','86,87,90,91,134');
 INSERT INTO moves VALUES('Barrage','NORMAL','20','Hits 2-5 times in one turn.','102,103');
 INSERT INTO moves VALUES('Barrier','PSYCHIC','20','Sharply raises uses Defense.','72,73,122,150,151');
-INSERT INTO moves VALUES('Bind','NORMAL','20','Traps opponent',' damaging them for 4-5 turns.','95,114,127');
+INSERT INTO moves VALUES('Bind','NORMAL','20','Traps opponent, damaging them for 4-5 turns.','95,114,127');
 INSERT INTO moves VALUES('Bite','NORMAL','25','May cause flinching.','7,8,9,19,20,23,24,29,30,41,42,52,53,58,59,115,130,133,134,136,138,139,142');
 INSERT INTO moves VALUES('Blizzard','ICE','5','May freeze opponent.','124,144');
 INSERT INTO moves VALUES('Body Slam','NORMAL','15','May paralyze opponent.','31,39,60,61,124,131,143');
@@ -86,13 +86,13 @@ INSERT INTO moves VALUES('Mirror Move','FLYING','20','User performs the opponens
 INSERT INTO moves VALUES('Mist','ICE','30','Uses stats cannot be changed for a period of time.','131,144,150');
 INSERT INTO moves VALUES('Night Shade','GHOST','15','Inflicts damage equal to uses level.','92,93,94');
 INSERT INTO moves VALUES('Pay Day','NORMAL','20','A small amount of money is gained after the battle resolves.','52,53');
-INSERT INTO moves VALUES('Peck','FLYING', '35', 'NULL' '21,22,32,33,34,83,84,85,118,119,144,145,146');
+INSERT INTO moves VALUES('Peck','FLYING', '35', 'The target is jabbed with a sharply pointed beak or horn.', '21,22,32,33,34,83,84,85,118,119,144,145,146');
 INSERT INTO moves VALUES('Petal Dance','GRASS','10','User attacks for 2-3 turns but then becomes confused.','3,43,44,45');
 INSERT INTO moves VALUES('Pin Missile','BUG','20','Hits 2-5 times in one turn.','15,135');
 INSERT INTO moves VALUES('Poison Gas','POISON','40','Poisons opponent.','88,89,96,97,109,110');
 INSERT INTO moves VALUES('Poison Powder','POISON','35','Poisons opponent.','1,2,3,12,43,44,45,46,47,48,49,69,70,71,102,114');
 INSERT INTO moves VALUES('Poison Sting','POISON','35','May poison the opponent.','13,23,24,27,28,29,30,31,32,33,34,72,73');
-INSERT INTO moves VALUES('Pound','NORMAL', '35,' ,'NULL','35,39,88,89,96,97,113,124,151');
+INSERT INTO moves VALUES('Pound','NORMAL', '35' ,'Pounds the foe with forelegs or tail.','35,39,88,89,96,97,113,124,151');
 INSERT INTO moves VALUES('Psybeam','PSYCHIC','20','May confuse opponent.','12,48,49,64,65,96,97,122,137');
 INSERT INTO moves VALUES('Psychic','PSYCHIC','10','May lower opponens Special Defense.','48,49,64,65,79,80,96,97,102,122,150,151');
 INSERT INTO moves VALUES('Psywave','PSYCHIC','15','Inflicts damage 50-150% of uses level.','122');
@@ -103,7 +103,7 @@ INSERT INTO moves VALUES('Razor Wind','NORMAL','10','Charges on first turn attac
 INSERT INTO moves VALUES('Recover','NORMAL','10','User recovers 50% of its max HP.','64,65,120,121,137,150');
 INSERT INTO moves VALUES('Reflect','PSYCHIC','20','Halves damage from Physical attacks for 5 turns.','64,65,102,122,144');
 INSERT INTO moves VALUES('Rest','PSYCHIC','10','User sleeps for 2 turns but user is fully healed.','39,86,87,143,128');
-INSERT INTO moves VALUES('Roar','NORMAL','20','In battles the opponent switches. In the wild',' the Pokémon runs.','37,38,58,59,142');
+INSERT INTO moves VALUES('Roar','NORMAL','20','In battles the opponent switches. In the wild, the Pokémon runs.','37,38,58,59,142');
 INSERT INTO moves VALUES('Rock Slide','ROCK','10','May cause flinching.','95,142');
 INSERT INTO moves VALUES('Rock Throw','ROCK','15','Drops rocks on the enemy.','74,75,76,95');
 INSERT INTO moves VALUES('Rolling Kick','FIGHTING','15','May cause flinching.','106');
@@ -116,7 +116,7 @@ INSERT INTO moves VALUES('Sharpen','NORMAL','30','Raises uses Attack.','137');
 INSERT INTO moves VALUES('Sing','NORMAL','15','Puts opponent to sleep.','35,36,39,40,113,131');
 INSERT INTO moves VALUES('Skull Bash','NORMAL','10','Raises Defense on first turn attacks on second.','7,8,9');
 INSERT INTO moves VALUES('Sky Attack','FLYING','5','Charges on first turn attacks on second. May cause flinching.','146');
-INSERT INTO moves VALUES('Slam','NORMAL','20','Slams the foe with a tail vine etc.','25','69','70','95','98','99','108','114');
+INSERT INTO moves VALUES('Slam','NORMAL','20','Slams the foe with a tail vine etc.','25,69,70,95,98,99,108,114');
 INSERT INTO moves VALUES('Slash','NORMAL','20','High critical hit ratio.','4,5,6,27,28,46,47,50,51,52,53,83,123,127,140,141');
 INSERT INTO moves VALUES('Sleep Powder','GRASS','15','Puts opponent to sleep.','1,2,3,12,43,44,45,48,49,69,70,71,102,114');
 
@@ -196,7 +196,7 @@ INSERT INTO moves VALUES('Water Gun','WATER','25','Squirts water to attack.','7,
 
 INSERT INTO moves VALUES('Waterfall','WATER','15','May cause flinching.','118,119');
 
-INSERT INTO moves VALUES('Whirlwind','NORMAL','20','In battles the opponent switches. In the wild',' the Pokémon runs.','12,16,17,18');
+INSERT INTO moves VALUES('Whirlwind','NORMAL','20','In battles the opponent switches. In the wild, the Pokemon runs.','12,16,17,18');
 
 INSERT INTO moves VALUES('Wing Attack','FLYING','35','Strikes the target with wings.','16,17,18,41,42,123,142');
 
