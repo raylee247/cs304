@@ -54,6 +54,7 @@
 				echo "<br> pid form pokemon <br>";
 				$result2 = executePlainSQL ("select pid  from pokemon ");
 				
+				
 				echo "<br> 5 <br>";
 				executePlainSQL ("DROP TABLE evolve");
 				executePlainSQL ("CREATE TABLE evolve (pid number(3,0),
@@ -83,7 +84,7 @@
 				executePlainSQL ("CREATE TABLE trainer (tid varchar(255),
 												party varchar(255) NOT NULL,
 												PRIMARY KEY (tid))");
-				executePlainSQL ("insert into trainer values (1,1)");
+				//executePlainSQL ("insert into trainer values (1,1)");
 				echo "<br> 9 <br>";
 				executePlainSQL ("DROP TABLE challenge");
 				executePlainSQL ("CREATE TABLE challenge (entry number(20,0),
@@ -112,7 +113,7 @@
 													type varchar(255),
 													Description varchar(255),
 													PRIMARY KEY (iid))");
-				executePlainSQL ("insert into item values (1,1,1)");
+				//executePlainSQL ("insert into item values (1,1,1)");
 				echo "<br> 13 <br>";
 				executePlainSQL ("DROP TABLE item_loc");
 				executePlainSQL ("CREATE TABLE item_loc (iid varchar(255),
@@ -125,7 +126,7 @@
 														PRIMARY KEY (lname),
 														FOREIGN KEY (lname) REFERENCES location
 																ON DELETE CASCADE)");
-				executePlainSQL ("insert into location values (1,1)");
+				//executePlainSQL ("insert into location values (1,1)");
 														
 			 	OCILogoff($db_conn);
 			} 

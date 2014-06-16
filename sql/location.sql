@@ -14,16 +14,16 @@ INSERT INTO location VALUES ('Digletts Cave','A seemingly plain tunnel that was 
 INSERT INTO location VALUES ('Fighting Dojo','Former Pokemon Gym located in Saffron City');
 INSERT INTO location VALUES ('Indigo Plateau','The fate of many Trainers aiming for the top rests here.');
 INSERT INTO location VALUES ('Mt. Moon','A mystical mountain that is known for its frequent meteor falls. The shards of stars that fall here are known as Moon Stones.');
-INSERT INTO location VALUES ('Pokemon Mansion','A decrepit burned-down mansion on Cinnabar Island. It got its name because a famous Pokémon researcher lived there.');
+INSERT INTO location VALUES ('Cinnabar Island Mansion','A decrepit burned-down mansion on Cinnabar Island. It got its name because a famous Pokémon researcher lived there.');
 INSERT INTO location VALUES ('Pokemon Tower','A tower that houses the graves of countless Pokémon. Many people visit it daily to pay their respects to the fallen');
 INSERT INTO location VALUES ('Power Plant','A power plant that was abandoned years ago though some of the machines still work. It is infested with electric Pokémon');
 INSERT INTO location VALUES ('Rock Tunnel','A naturally formed underground tunnel. Because it has not been developed it is inky dark inside. A light is needed to get through.');
 INSERT INTO location VALUES ('Celadon Game Corner','A fun time Casino');
 INSERT INTO location VALUES ('Safari Zone','An amusement park outside Fuchsia City where many rare Pokémon can be observed in the wild. Catch them in a popular game!');
 INSERT INTO location VALUES ('Seafoam Islands','A pair of islands that is situated on Route 20. The two islands are shaped the same as if they were twins.');
-INSERT INTO location VALUES ('Silph Co.','They are the manufacturers of many tools including the Silph Scope—a device that allows the user to view spectral entities—as well as home appliances.');
+INSERT INTO location VALUES ('Silph Co. Building','They are the manufacturers of many tools including the Silph Scope—a device that allows the user to view spectral entities—as well as home appliances.');
 INSERT INTO location VALUES ('Victory Road','A tunnel situated on Route 23. It earned its name because it must be traveled by all Trainers aiming for the top.');
-INSERT INTO location VALUES ('Virdian Forest','A deep and sprawling forest that extends around Viridian City. A natural maze many people become lost inside.');
+INSERT INTO location VALUES ('Viridian Forest','A deep and sprawling forest that extends around Viridian City. A natural maze many people become lost inside.');
 INSERT INTO location VALUES ('Route 1','A country road full of greenery and rough paths.');
 INSERT INTO location VALUES ('Route 2','A path that winds and bends from the forest entrance.');
 INSERT INTO location VALUES ('Route 3','A road where many rocks have fallen from the sky to create craters.');
@@ -49,3 +49,53 @@ INSERT INTO location VALUES ('Route 22','A path to Victory Road that eventually 
 INSERT INTO location VALUES ('Route 23','A route in northwest Kanto connecting Indigo Plateau to Victory Road and Route 22.');
 INSERT INTO location VALUES ('Route 24','A beautiful bridge that stretches across a river.');
 INSERT INTO location VALUES ('Route 25','A path that winds through the forest and comes out overlooking the sea.');
+INSERT INTO location VALUES ('Pewter City Gym','Official gym of Pewter City.');
+INSERT INTO location VALUES ('Cerulean City Gym','Official gym of Cerulean City.');
+INSERT INTO location VALUES ('Vermilion City Gym','Official gym of Vermilion City.');
+INSERT INTO location VALUES ('Celadon City Gym','Official gym of Celadon City.');
+INSERT INTO location VALUES ('Fuchsia City Gym','Official gym of Fuchsia City.');
+INSERT INTO location VALUES ('Saffron City Gym','Official gym of Saffron City.');
+INSERT INTO location VALUES ('Cinnabar Island Gym','Official gym of Cinnabar Island.');
+INSERT INTO location VALUES ('Viridian City Gym','Official gym of Viridian City.');
+INSERT INTO location VALUES ('Casino','The Rocket Game Corner');
+INSERT INTO location VALUES ('S. S. Anne','A well-known luxury cruise liner which sails the world, stopping annually in Vermilion City, Kanto.');
+INSERT INTO location VALUES ('Prof. Oak Lab','A PokŽmon lab located in Pallet Town that is directed by Professor Samuel Oak.');
+INSERT INTO location VALUES ('Evolved from Bulbasaur','Evolved from Bulbasaur');
+INSERT INTO location VALUES ('Evolve from Ivysaur','Evolve from Ivysaur');
+INSERT INTO location VALUES ('Evolved from Charmander','Evolved from Charmander');
+INSERT INTO location VALUES ('Evolved from Charmeleon','Evolved from Charmeleon');
+INSERT INTO location VALUES ('Evolved from Squirtle','Evolved from Squirtle');
+INSERT INTO location VALUES ('Evolved from Wartortle','Evolved from Wartortle');
+INSERT INTO location VALUES ('Evolved from Metapod','Evolved from Metapod');
+INSERT INTO location VALUES ('Evolved from Kakuna','Evolved from Kakuna');
+INSERT INTO location VALUES ('Evolved from Pidgeotto','Evolved from Pidgeotto');
+INSERT INTO location VALUES ('Evolved from Nidorina','Evolved from Nidorina');
+INSERT INTO location VALUES ('Evolved from Nidorino','Evolved from Nidorino');
+INSERT INTO location VALUES ('Evolved from Clefairy','Evolved from Clefairy');
+INSERT INTO location VALUES ('Evolved from Vulpix','Evolved from Vulpix');
+INSERT INTO location VALUES ('Evolved from Gloom','Evolved from Gloom');
+INSERT INTO location VALUES ('Evolved from Meowth','Evolved from Meowth');
+INSERT INTO location VALUES ('Evolved from Mankey','Evolved from Mankey');
+INSERT INTO location VALUES ('Evolved from Growlithe','Evolved from Growlithe');
+INSERT INTO location VALUES ('Evolved from Poliwhirl','Evolved from Poliwhirl');
+INSERT INTO location VALUES ('Evolved from Kadabra','Evolved from Kadabra');
+INSERT INTO location VALUES ('Evolved from Machoke','Evolved from Machoke');
+INSERT INTO location VALUES ('Evolved from Weepinbell','Evolved from Weepinbell');
+INSERT INTO location VALUES ('Evolved from Tentacool','Evolved from Tentacool');
+INSERT INTO location VALUES ('Evolved from Graveler','Evolved from Graveler');
+INSERT INTO location VALUES ('Evolved from Shellder','Evolved from Shellder');
+INSERT INTO location VALUES ('Evolved from Haunter','Evolved from Haunter');
+INSERT INTO location VALUES ('Evolved from Exeggcute','Evolved from Exeggcute');
+INSERT INTO location VALUES ('Evolved from Staryu','Evolved from Staryu');
+INSERT INTO location VALUES ('Evolved from Magikarp','Evolved from Magikarp');
+INSERT INTO location VALUES ('Evolved from Eevee','Evolved from Eevee');
+INSERT INTO location VALUES ('Evolved from Omanyte','Evolved from Omanyte');
+INSERT INTO location VALUES ('Evolved from Kabuto','Evolved from Kabuto');
+INSERT INTO location VALUES ('Evolved from Dratini','Evolved from Dratini');
+INSERT INTO location VALUES ('Evolved from Dragonair','Evolved from Dragonair');
+
+
+
+
+
+
