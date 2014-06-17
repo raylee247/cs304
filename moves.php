@@ -197,7 +197,7 @@
 
 <?php
 
-	if(isset($_GET['filtetype'])&&(isset($_GET['filterpp']))){
+	if(isset($_GET['filtetypes'])&&(isset($_GET['filterpp']))){
 	$filtertype = $_GET['filtertypes'];
 	$fitlerpp = $_GET['filterpp'];
  	 //$filtermove = ucfirst(strtolower($_POST["filtermove"]));
