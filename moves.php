@@ -6,6 +6,8 @@
 -->
 <html>
 	<?php
+	require 'template.php';
+	session_start();
 	echo $header;
 	?>
 
@@ -55,31 +57,63 @@ Moves: <input type="text" name="moves">
                      	 </table>
                 	 </body>
                      
+<form name="input" action="moves.php" method="get">
+	Search by Move Name: <input type="text" name="move"> or
+	<select id="types" name="types">
+		  <option value="type">Types</option>}
+		  <option value="normal">Normal</option>
+		  <option value="fighting">Fighting</option>
+		  <option value="flying">Flying</option>
+		  <option value="poison">Poison</option>
+		  <option value="ground">Ground</option>
+		  <option value="rock">Rock</option>
+		  <option value="bug">Bug</option>
+		  <option value="ghost">Ghost</option>
+		  <option value="fire">Fire</option>
+		  <option value="water">Water</option>
+		  <option value="grass">Grass</option>
+		  <option value="electric">Electric</option>
+		  <option value="psychic">Psychic</option>
+		  <option value="ice">Ice</option>
+		  <option value="dragon">Dragon</option>
+		</select> 
+	<input type="submit" value="search">
+	</form> 
+
 <?php
 
-//SEARCH
-	$move = ucfirst($_GET["moves"]);
+	$type = $_GET['types'];
+	$move = ucfirst(strtolower($_GET["move"]));
 	if($move != null){
-		$result = executePlainSQL("select * from moves where lname = '" . $location . "'");
+		//$pokemon = ucfirst($_POST["pokemon"]);
+		$result = executePlainSQL("SELECT name,type,pp,effect FROM moves WHERE name = '" . $move . "' OR name LIKE '%" . $move . "%'");
+		$search_result = executePlainSQL("SELECT COUNT(*) FROM moves WHERE name = '" . $move . "' OR name LIKE '%" . $move . "%'");
+		$count = OCI_Fetch_Array($search_result, OCI_BOTH);
+		echo "<br>" . $count[0] . " results found <br>";
+		
+	}
+	if($type != null){
+		$type = strtoupper($type);
+		$result = executePlainSQL("SELECT name,type,pp,effect FROM moves WHERE type = '" . $type . "'");
+		$search_result = executePlainSQL("SELECT COUNT(*) FROM moves WHERE type = '" . $type . "'");
+		$count = OCI_Fetch_Array($search_result, OCI_BOTH);
+		echo "<br>" . $count[0] . " results found <br>";
 	}
 	else{
-		$result = executePlainSQL("select * from moves");
+		$result = executePlainSQL("SELECT * FROM moves");
 	}
-	printItem($result);
-	
-//Print result	
-function printMoves($result){
-	echo '<table>';
-	echo '<tr><td>Name</td><td>Type</td><td>PP</td><td>PID</td></tr>';
-	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-		//echo "<tr><td>" . $row[0] . "</td><td><a href = profile.php?name=" . $row[1] . ">" . $row[1] . "</a></td><td>" . '<img src="' . $row[2] . '" alt="picture">' . "</td></tr>";
-		//echo '<tr><img src="' . $row[2] . '" alt="picture"></tr>';								
-	}//<a href="pokemon.php" class="classname">Pokemon</a>
-	echo '</table>';
+	printResult($result);
+	//$result = executePlainSQL("select * from pokemon");
+	//printPoke($result);
+
+function max(){
+	$max = executePlainSQL("SELECT * FROM m1.moves WHERE m1.pp >= ALL (SELECT m2.pp FROM moves m2)");
+	printResult($max);
 }
+
+function min(){
+	$min = executePlainSQL("SELECT * FROM moves m1 WHERE m1.pp <= ALL (SELECCT m2.pp FROM MOVES m2)");
+	printResult($min);
 ?>
-                
-                    
-	<!-->OCI_close();<-->
 	
 </html>
