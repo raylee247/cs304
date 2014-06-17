@@ -1,119 +1,11 @@
 
 <html>
 	<?php
-<<<<<<< HEAD
 	require 'template.php';
 	session_start();
 	echo $header;
 	?>
-=======
-           require 'template.php';
-           session_start();
-           //require 'index.php';
-           //echo $header;
-   	?>
-    
-    <head>
-    <style>
-    .Pokeguide {
-	margin:0px;padding:0px;
-	width:100%;
-	box-shadow: 10px 10px 5px #888888;
-	border:1px solid #ffffff;
-	
-	-moz-border-radius-bottomleft:3px;
-	-webkit-border-bottom-left-radius:3px;
-	border-bottom-left-radius:3px;
-	
-	-moz-border-radius-bottomright:3px;
-	-webkit-border-bottom-right-radius:3px;
-	border-bottom-right-radius:3px;
-	
-	-moz-border-radius-topright:3px;
-	-webkit-border-top-right-radius:3px;
-	border-top-right-radius:3px;
-	
-	-moz-border-radius-topleft:3px;
-	-webkit-border-top-left-radius:3px;
-	border-top-left-radius:3px;
-}.Pokeguide table{
-    border-collapse: collapse;
-        border-spacing: 0;
-	width:100%;
-	height:100%;
-	margin:0px;padding:0px;
-}.Pokeguide tr:last-child td:last-child {
-	-moz-border-radius-bottomright:3px;
-	-webkit-border-bottom-right-radius:3px;
-	border-bottom-right-radius:3px;
-}
-.Pokeguide table tr:first-child td:first-child {
-	-moz-border-radius-topleft:3px;
-	-webkit-border-top-left-radius:3px;
-	border-top-left-radius:3px;
-}
-.Pokeguide table tr:first-child td:last-child {
-	-moz-border-radius-topright:3px;
-	-webkit-border-top-right-radius:3px;
-	border-top-right-radius:3px;
-}.Pokeguide tr:last-child td:first-child{
-	-moz-border-radius-bottomleft:3px;
-	-webkit-border-bottom-left-radius:3px;
-	border-bottom-left-radius:3px;
-}.Pokeguide tr:hover td{
-	background-color:#ffffff;
-		
 
-}
-.Pokeguide td{
-	vertical-align:middle;
-	
-	background-color:#8fc1ea;
-
-	border:1px solid #ffffff;
-	border-width:0px 1px 1px 0px;
-	text-align:center;
-	padding:13px;
-	font-size:14px;
-	font-family:Verdana;
-	font-weight:normal;
-	color:#6d6d6d;
-}.Pokeguide tr:last-child td{
-	border-width:0px 1px 0px 0px;
-}.Pokeguide tr td:last-child{
-	border-width:0px 0px 1px 0px;
-}.Pokeguide tr:last-child td:last-child{
-	border-width:0px 0px 0px 0px;
-}
-.Pokeguide tr:first-child td{
-		background:-o-linear-gradient(bottom, #3371af 5%, #3371af 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3371af), color-stop(1, #3371af) );
-	background:-moz-linear-gradient( center top, #3371af 5%, #3371af 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#3371af", endColorstr="#3371af");	background: -o-linear-gradient(top,#3371af,3371af);
->>>>>>> 1247d7b2365c86f951664b99b1cca78e4f2fea69
-
-	background-color:#3371af;
-	border:0px solid #ffffff;
-	text-align:center;
-	border-width:0px 0px 1px 1px;
-	font-size:15px;
-	font-family:Helvetica;
-	font-weight:bold;
-	color:#ffffff;
-}
-.Pokeguide tr:first-child:hover td{
-	background:-o-linear-gradient(bottom, #3371af 5%, #3371af 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3371af), color-stop(1, #3371af) );
-	background:-moz-linear-gradient( center top, #3371af 5%, #3371af 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#3371af", endColorstr="#3371af");	background: -o-linear-gradient(top,#3371af,3371af);
-
-	background-color:#3371af;
-}
-.Pokeguide tr:first-child td:first-child{
-	border-width:0px 0px 1px 0px;
-}
-.Pokeguide tr:first-child td:last-child{
-	border-width:0px 0px 1px 1px;
-}
-    </style>
     </head>
   
   
@@ -181,24 +73,37 @@
 	<input type="submit" value="search">
 	</form> 
 
+<form action="moves.php">
+    <input type="submit" name="maxPP" value="maxPP" onclick="insert()" />
+    <input type="submit" name="minPP" value="minPP" onclick="select()" />
+</form>
+		
 <?php
-
+if($_GET){
+		if(isset($_GET['maxPP'])){
+			maxpp();
+		}elseif(isset($_GET['minPP'])){
+			minpp();
+		}
+	}
 	$type = $_GET['types'];
 	$move = ucfirst(strtolower($_GET["move"]));
-	if($move != null){
-		//$pokemon = ucfirst($_POST["pokemon"]);
-		$result = executePlainSQL("SELECT name,type,pp,effect FROM moves WHERE name = '" . $move . "' OR name LIKE '%" . $move . "%'");
-		$search_result = executePlainSQL("SELECT COUNT(*) FROM moves WHERE name = '" . $move . "' OR name LIKE '%" . $move . "%'");
-		$count = OCI_Fetch_Array($search_result, OCI_BOTH);
-		echo "<br>" . $count[0] . " results found <br>";
-		
-	}
-	if($type != null){
-		$type = strtoupper($type);
-		$result = executePlainSQL("SELECT name,type,pp,effect FROM moves WHERE type = '" . $type . "'");
-		$search_result = executePlainSQL("SELECT COUNT(*) FROM moves WHERE type = '" . $type . "'");
-		$count = OCI_Fetch_Array($search_result, OCI_BOTH);
-		echo "<br>" . $count[0] . " results found <br>";
+	if($move !=null || $type != null){
+		if($move != null){
+			//$pokemon = ucfirst($_POST["pokemon"]);
+			$result = executePlainSQL("SELECT name,type,pp,effect FROM moves WHERE name = '" . $move . "' OR name LIKE '%" . $move . "%'");
+			$search_result = executePlainSQL("SELECT COUNT(*) FROM moves WHERE name = '" . $move . "' OR name LIKE '%" . $move . "%'");
+			$count = OCI_Fetch_Array($search_result, OCI_BOTH);
+			echo "<br>" . $count[0] . " results found <br>";
+			
+		}
+		if($type != null && $type != "type"){
+			$type = strtoupper($type);
+			$result = executePlainSQL("SELECT name,type,pp,effect FROM moves WHERE type = '" . $type . "'");
+			$search_result = executePlainSQL("SELECT COUNT(*) FROM moves WHERE type = '" . $type . "'");
+			$count = OCI_Fetch_Array($search_result, OCI_BOTH);
+			echo "<br>" . $count[0] . " results found <br>";
+		}
 	}
 	else{
 		$result = executePlainSQL("SELECT * FROM moves");
@@ -208,13 +113,14 @@
 	//printPoke($result);
 
 function maxpp(){
-	$max = executePlainSQL("SELECT * FROM m1.moves WHERE m1.pp >= ALL (SELECT m2.pp FROM moves m2)");
+	$max = executePlainSQL("SELECT * FROM moves m1 WHERE m1.pp >= ALL (SELECT m2.pp FROM moves m2)");
 	printResult($max);
 }
 
 function minpp(){
-	$min = executePlainSQL("SELECT * FROM moves m1 WHERE m1.pp <= ALL (SELECCT m2.pp FROM MOVES m2)");
+	$min = executePlainSQL("SELECT * FROM moves m1 WHERE m1.pp <= ALL (SELECT m2.pp FROM MOVES m2)");
 	printResult($min);
+}
 ?>
 	
 </html>
