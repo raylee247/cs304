@@ -144,6 +144,7 @@ Search Items: <input type="text" name="item"> with
 <?php
 		if(isset($_POST['item'])){
                  $item = $_POST ['options'];
+				 $option = $_POST['options'];
 //              echo $item;
          }
          $item = ucfirst(strtolower($_POST["item"]));
@@ -164,6 +165,9 @@ function printItem($result){
 	echo "</table>";
 	echo "</div>";
 }
-?>       
+?> 
+
+	<!-->OCI_close();<-->
+      
                         
 </html>
