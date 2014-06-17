@@ -33,7 +33,7 @@
 					</header>
 
 
-<form name="search" action="itemtest.php" method="post">
+<form name="search" action="items.php" method="post">
 Search Items: <input type="text" name="item"> with
 <select id = "options" name = "options">
 <option value= "IID"> IID</option>
