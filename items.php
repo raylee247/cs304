@@ -4,8 +4,9 @@
 	session_start();
 	ini_set('session.save_path', '/home/i/i5a8/');
 	?>
-   
+   	<noscript>
     <link rel="stylesheet" href="cssmain/table.css" />
+    </noscript>
     
                 <head>
                 <title>POKEGUIDE</title>
@@ -57,7 +58,7 @@ Search Items: <input type="text" name="item"> with
 		printItem($result);
 	
 function printItem($result){
-	echo "<div class='CSSTableGenerator'>";
+	echo "<div class='Pokeguide'>";
 	echo "<table>";
 	echo "<tr><th>IID</th><th>Type</th><th>Description</th></tr>";
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
