@@ -207,12 +207,12 @@
 	//$result = executePlainSQL("select * from pokemon");
 	//printPoke($result);
 
-function max(){
+function maxpp(){
 	$max = executePlainSQL("SELECT * FROM m1.moves WHERE m1.pp >= ALL (SELECT m2.pp FROM moves m2)");
 	printResult($max);
 }
 
-function min(){
+function minpp(){
 	$min = executePlainSQL("SELECT * FROM moves m1 WHERE m1.pp <= ALL (SELECCT m2.pp FROM MOVES m2)");
 	printResult($min);
 ?>
