@@ -1,80 +1,104 @@
 <!DOCTYPE HTML>
-<!--
-	Aerial 1.0 by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
-	<?php
-	echo $header;
-	?>
-
-				<!-- Header -->
-					<header id="menu">
-                	<nav>
-               		 <ul>
-                		<li><a href="index.php" class="classname">Back To Home</a></li>
-                	</ul>
-                    </nav>
-						<nav>
-							<ul>
-                            <li><a href="pokemon.php" class="classname">Pokemon</a></li>
-							  <li><a href="location.php" class="classname">Location</a></li>
-							  <li><a href="moves.php" class="classname">Moves</a></li>
-								<li><a href="trainers.php" class="classname">Trainers</a></li>
-                                <li> <a href="items.php" class="classname">Items</a></li>
-                               <li><a href="teamBuilder.php" class="classname"> Team Buidler </a></li>
-							</ul>
-						</nav>
-					</header>
-                
-<form name="input" action="type.php" method="get">
-Type: <input type="text" name="type">
-<input type="submit" value="search">
-</form> 
-				<body>
-                		<table>
-                        <thead>
-                    	<tr>
-                    		<td>--</td>
-                    		<td>--</td>
-                            <td>--</td>
-                    	</tr>
-                        </thead>
-                        <tbody>
-							<?php
-							$result = executePlainSQL("select * from type_is");
-							echo "<table>";
-							while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-								echo "<tr><td>" . $row['tid']. "</td><td>" . $row['party'] . "</td><td>" . $row['password'] . "</td></tr>";  	
-								echo "</table>";
-							?>
-                   		 </tbody>
-                     	 </table>
-                	 </body>
-                 	 </body>
-<?php
-
-//SEARCH
-	$type = ucfirst($_GET["type_is"]);
-	if($trainer != null){
-		$result = executePlainSQL("select * from type_is where -- = '" . $type . "'");
-	}
-	else{
-		$result = executePlainSQL("select * from type_is");
-	}
-	printItem($result);
+	<head>
 	
-//Print result	
-function printMoves($result){
-	echo '<table>';
-	echo '<tr><td>--</td><td>--</td><td>--</td></tr>';
-	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-		//echo "<tr><td>" . $row[0] . "</td><td><a href = profile.php?name=" . $row[1] . ">" . $row[1] . "</a></td><td>" . '<img src="' . $row[2] . '" alt="picture">' . "</td></tr>";
-		//echo '<tr><img src="' . $row[2] . '" alt="picture"></tr>';								
-	}//<a href="pokemon.php" class="classname">Pokemon</a>
-	echo '</table>';
-}
-?>                   
-	<!-->OCI_close();<-->
+		<title>PokeGude</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/config.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="cssmain/table.css" />
+	</head>
+	<body>
+	<!-- ********************************************************* -->
+		<div id="header-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="12u">
+						
+						<?php require 'topMenubar.php';?>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="main">
+			<div class="container">
+				<div class="row main-row">
+					<div class="12u">
+					<h2 style='text-align:center;'>Pokemon Weakness Type Chart</h2>
+						<div class="Pokeguide">
+					
+					
+						<?php
+					
+					//EXTRACT DATA FROM TYPES TABLE
+					$Type_is = executePlainSQL("SELECT * from type_is");
+					echo "<table>";
+						echo "<tr><td>Attack\Defense</td>";
+					//=============FIRST ROW FOR THE TABLES
+					while($row = OCI_Fetch_Array($Type_is,OCI_BOTH))
+					{
+						if($row[0] !='Nothing')
+						echo "<td>$row[0]</td>";
+					}
+					//=========================
+						echo "</tr>";
+					//=============REST OF ROWS
+					$RestType = executePlainSQL("SELECT * from type_is");
+					//REST OF THE TABLE
+					while($row = OCI_Fetch_Array($RestType,OCI_BOTH))
+					{
+						if($row[0] !='Nothing')
+						{
+							echo "<tr>";
+							for($x=0; $x < 16; $x++)
+							{
+								echo "<td>{$row[$x]}</td>";
+							}
+							echo "</tr>";
+						}
+					}
+					//=============================
+					echo "</table>";
+					?>
+				
+					</div>
+				</div>
+			</div>
+		</div>		
+</div>
+		<div id="footer-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="8u">
+					</div>
+					<div class="4u">
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="12u">
+
+						<div id="copyright">
+									&copy; CS304 - PokeGuide. All rights reserved. | Design: HTML5 UP | Images: fotogrph
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- ********************************************************* -->
+	</body>
 </html>

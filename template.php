@@ -1,6 +1,4 @@
-<html>
-<h>PokeGuide</h>
-	<p>
+
 		<?php
 
 			$success = True; //keep track of errors so it redirects the page only if there are no errors
@@ -31,6 +29,7 @@
 			}
 			
 			function printResult($result) { //prints results from a select statement
+				echo "<div class='Pokeguide'>
 				echo "<table>";
 
 				while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
@@ -40,8 +39,6 @@
 					
 				}
 				echo "</table>";
-
+				echo "</div>";
 			}
 		?>
-	</p>
-</html>
