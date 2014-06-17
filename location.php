@@ -7,6 +7,7 @@
 <html>
 	<?php
 	echo $header;
+	require 'template.php';
 	?>
 
 				<!-- Header -->
@@ -23,60 +24,60 @@
 							 <li> <a href="items.php" class="classname">Items</a></li>
 								<li><a href="trainers.php" class="classname">Trainers</a></li>
                                <li><a href="types.php" class="classname">Types</a>
-                               <li><a href="teamBuilder.php" class="classname"> Team Buidler </a></li>
+                               <li><a href="teamBuilder.php" class="classname"> Team Builder </a></li>
 							</ul>
 						</nav>
                      </header>
                  
-<form name="input" action="location.php" method="get">
-Location: <input type="text" name="location">
+<form name="search" action="location.php" method="post">
+Search Location: <input type="text" name="location"> 
 <input type="submit" value="search">
-</form> 				
+</form> 	
 
-				<body>
-                		<table>
-                        <thead>
-                    	<tr>
-                    		<td>lname</td>
-                    		<td>description</td>
-                    	</tr>
-                        </thead>
-                        <tbody>
-							<?php
-							$result = executePlainSQL("select * from location");
-							echo "<table>";
-							while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-								echo "<tr><td>" . $row['lname']. "</td><td>" . $row['description'] . "</td></tr>";  	
-								}
-								echo "</table>";
-							?>
-                   		 </tbody>
-                     	 </table>  
-                 </body>
+				
 
 <?php
 
 //SEARCH
-	$location = ucfirst($_GET["location"]);
-	if($item != null){
-		$result = executePlainSQL("select * from location where lname = '" . $location . "'");
+	if(isset($_POST['location'])){
+                 $location = $_POST ['options'];
+	              echo $location;
+         }
+	$location = ucfirst(strtolower($_POST["location"]));
+	
+	if($location != null){ //changing to !== null will make it show only locations in queries 
+		//$location = str_replace(' ', '', $location);
+		$location =	preg_replace('/\s+/', '', $location);
+		$result = executePlainSQL("SELECT * FROM location WHERE lname = '" . $location . "' OR lname LIKE '%" . $location . "%'");
+
 	}
 	else{
-		$result = executePlainSQL("select * from location");
+		$result = executePlainSQL("SELECT * FROM location");
 	}
-	printItem($result);
-	
+	var_dump(location);
+	printLocation($result);
+
 //Print result	
+
 function printLocation($result){
+	echo "<div class='Pokeguide'>";
 	echo '<table>';
-	echo '<tr><td>lname</td><td>description</td></tr>';
+	echo '<tr><td>Location</td><td>Description</td></tr>';
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-		//echo "<tr><td>" . $row[0] . "</td><td><a href = profile.php?name=" . $row[1] . ">" . $row[1] . "</a></td><td>" . '<img src="' . $row[2] . '" alt="picture">' . "</td></tr>";
-		//echo '<tr><img src="' . $row[2] . '" alt="picture"></tr>';								
-	}//<a href="pokemon.php" class="classname">Pokemon</a>
-	echo '</table>';
+		if((strpos($row[0],'Evolve') === false) and (strpos($row[0],'LName') === false)){	  
+			echo '<tr>';
+			echo '<td>' . $row[0] . '</td>';
+			echo '<td>' . $row[1] . '</td>';
+			echo '</tr>';
+		}
+		
+							
+	}
+	echo "</table>";
+	echo "</div>";
 }
+
 ?>
                     
-	<!-->OCI_close();<-->
+	
 </html>
