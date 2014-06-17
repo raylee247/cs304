@@ -9,7 +9,7 @@
     <style>
     .Pokeguide {
 	margin:0px;padding:0px;
-	width:75%;
+	width:100%;
 	box-shadow: 10px 10px 5px #888888;
 	border:1px solid #ffffff;
 	
@@ -31,7 +31,7 @@
 }.Pokeguide table{
     border-collapse: collapse;
         border-spacing: 0;
-	width:75%;
+	width:100%;
 	height:100%;
 	margin:0px;padding:0px;
 }.Pokeguide tr:last-child td:last-child {
