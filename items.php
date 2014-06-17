@@ -4,11 +4,12 @@
 	session_start();
 	ini_set('session.save_path', '/home/i/i5a8/');
 	?>
+    
    	<head>
     <style>
     .Pokeguide {
 	margin:0px;padding:0px;
-	width:100%;
+	width:75%;
 	box-shadow: 10px 10px 5px #888888;
 	border:1px solid #ffffff;
 	
@@ -30,7 +31,7 @@
 }.Pokeguide table{
     border-collapse: collapse;
         border-spacing: 0;
-	width:100%;
+	width:75%;
 	height:100%;
 	margin:0px;padding:0px;
 }.Pokeguide tr:last-child td:last-child {
@@ -108,8 +109,6 @@
     
                 
                 <title>POKEGUIDE</title>
-              
-                <body bgcolor="#40E0D0">
                 
                 <!-- Header -->
 					<header id="menu">
@@ -158,7 +157,7 @@ Search Items: <input type="text" name="item"> with
 function printItem($result){
 	echo "<div class='Pokeguide'>";
 	echo "<table>";
-	echo "<tr><th>IID</th><th>Type</th><th>Description</th></tr>";
+	echo "<tr><td>IID</td><td>Type</td><td>Description</td></tr>";
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
 		echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td></tr>";																	
 	}	
