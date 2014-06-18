@@ -41,6 +41,42 @@
 Pokemon: <input type="text" name="pokemon">
 <input type="submit" value="search">
 </form> 
+
+<form>
+ Filter Pokemon by Type:
+ <select name = "sort" id = "sort">
+ <option value= "Grass"> Grass</option>
+ <option value= "Fire"> Fire</option>
+  <option value= "Bug">  Bug </option>
+  <option value= "Poison">  Poison </option>
+  <option value= "Electric">  Electric </option>
+  <option value= "Normal"> Normal </option>
+  <option value= "Ground">  Ground </option>
+  <option value= "Fighting">  Fighting </option>
+  <option value= "Psychic"> Psychic </option>
+  <option value= "Ghost">  Ghost </option>
+  <option value= "Ice"> Ice </option>
+  <option value= "Dragon"> Dragon </option>
+  </select>
+  <input type = "submit" value = "search">
+  </form>
+  
+  <?php
+ if(isset($_GET['sort'])){
+  $type = $_GET['sort'];
+  //echo $type;
+  //}
+  if($type !== null){
+  $result = executePlainSQL ("SELECT * FROM pokemon p1 WHERE NOT EXISTS(SELECT * FROM pokemon p2 WHERE type1 = '".$type."' AND NOT EXISTS(SELECT * FROM po    kemon p3 WHERE p1.type1 = p2.type1))");
+ //echo $type;
+  //echo $result;
+  }else{
+  $result = executePlainSQL ("SELECT * FROM pokemon");
+  //echo $result;
+  }printPoke($result);
+  }
+  ?>
+
 <?php
 if(isset($_SESSION["username"]) && $numofPoke < 6){
 echo "<br>";
