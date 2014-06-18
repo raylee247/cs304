@@ -88,12 +88,11 @@ function printPoke($result){
 		$locQuery = executePlainSQL("select lname from poke_found where pid={$row[0]}");
 		$loc = OCI_Fetch_Array($locQuery, OCI_BOTH);
 	
-		//var_dump($loc);
-		//echo "I am here {$loc[0]}";
+		
 		echo "<table>";
 		echo "<tr>";
 		echo "<td><font size='5px'>{$row[0]}</font></td>";
-		echo "<td><font size='5px'><a href = profile.php?name='{$row[1]}'>{$row[1]}</a></font></td>";
+		echo "<td><font size='5px'><a href = profile.php?name={$row[1]}>{$row[1]}</a></font></td>";
 		echo "<td><font size='5px'>{$loc[0]}</font></td>";
 		echo "</tr>";
 		
