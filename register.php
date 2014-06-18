@@ -68,16 +68,8 @@ Password:<br> <input type="password" name="password"><br>
 </form> 
 
 <button onclick="location.href = 'login.php';">Login Here</button>
-				</div>
- 
 
-						</div>
-				
-					</div>
-				</div>
-			</div>
-		</div>
-		<?php
+<?php
 global $db_conn;
 if (isset($_POST['username']) and isset($_POST['password'])){
 $username = $_POST['username'];
@@ -90,7 +82,7 @@ $arrayResults = OCI_Fetch_Array($results,OCI_BOTH);
 
 if($arrayResults[0] != null)
 {
-echo 'The username has already been taken, Try another username';
+echo '<br>The username has already been taken, Try another username';
 }
 else
 {
@@ -103,6 +95,21 @@ OCILogoff($db_conn);
 
 }
 ?>
+
+
+
+
+
+				</div>
+ 
+
+						</div>
+				
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		
 				<div class="row">
 					<div class="12u">

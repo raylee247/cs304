@@ -46,7 +46,7 @@ Password: <br><input type="password" name="password"><br>
 </form> 	
 
 <button onclick="location.href = 'register.php';">Register Here</button>
-				</div>
+				
 <?php
 global $db_conn;
 
@@ -76,7 +76,7 @@ echo "<br>Wrong password or username<br>";
 }
 
 ?> 
-
+</div>
 						</div>
 				
 					</div>
