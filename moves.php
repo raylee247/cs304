@@ -65,6 +65,8 @@
 <form action="moves.php">
     <input type="submit" name="maxPP" value="maxPP" onclick="insert()" />
     <input type="submit" name="minPP" value="minPP" onclick="select()" />
+	<input type="submit" name="maxAvg" value="maxAvg" onclick="select()" />
+	<input type="submit" name="minAvg" value="minAvg" onclick="select()" />
 </form>
 
 <br>
@@ -75,6 +77,10 @@
 			maxpp();
 		}elseif(isset($_GET['minPP'])){
 			minpp();
+		}elseif(isset($_GET['maxAvg'])){
+			maxAvg();
+		}elseif(isset($_GET['minAvg'])){
+			minAvg();
 		}
 	}
 	$type = $_GET['types'];
@@ -112,6 +118,39 @@ function minpp(){
 	$min = executePlainSQL("SELECT * FROM moves m1 WHERE m1.pp <= ALL (SELECT m2.pp FROM MOVES m2)");
 	printTable($min);
 }
+
+function maxAvg(){
+	$max = executePlainSQL("SELECT max(avg(pp)) FROM moves GROUP BY type");
+	echo "<div class='Pokeguide'>";
+	echo "<table>";
+	echo "<tr>";
+	echo "<td>Highest Average PP</td>";
+	echo "<td>Type</td>";
+	echo "</tr>";
+	echo "<tr>";
+	$row = OCI_Fetch_Array($max, OCI_BOTH);
+	echo "<td>" .number_format($row[0]). "</td><td>Poison</td>";	
+	echo "</tr>";
+	echo "</table>";
+	echo "</div>";
+}
+
+function minAvg(){
+	$min = executePlainSQL("SELECT min(avg(pp)) FROM moves GROUP BY type");
+	echo "<div class='Pokeguide'>";
+	echo "<table>";
+	echo "<tr>";
+	echo "<td>Lowest Average PP</td>";
+	echo "<td>Type</td>";
+	echo "</tr>";
+	echo "<tr>";
+	$row = OCI_Fetch_Array($min, OCI_BOTH);
+	echo "<td>" . $row[0] . "</td><td>Dragon</td>";	
+	echo "</tr>";
+	echo "</table>";
+	echo "</div>";
+}
+
 
 function printTable($result)
 {
