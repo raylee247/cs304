@@ -112,10 +112,12 @@ echo "<center>Your Party is full with 6 Pokemon, remove one Pokemon to add anoth
 	$type1 = $_GET['type1'];
 	$type2 = $_GET['type2'];
 	$pokemon = ucfirst(strtolower($_GET["pokemon"]));
+	if($pokemon == null && $type1 == null && $type2 == null){
+		$result = executePlainSQL("SELECT * FROM pokemon ORDER BY pid");
+		printPoke($result);
+		}
 	if($pokemon != null){
 		//$pokemon = ucfirst($_POST["pokemon"]);
-		$pokemons = array_map('ucfirst', explode(" " , $pokemon));
-		$pokemon = implode(" " , $pokemon);
 		$result = executePlainSQL("SELECT * FROM pokemon WHERE tname = '" . $pokemon . "' OR tname LIKE '%" . $pokemon . "%'");
 	}
 		
@@ -127,7 +129,7 @@ echo "<center>Your Party is full with 6 Pokemon, remove one Pokemon to add anoth
 		echo "<br>" . $count[0] . " results found <br>";
 	}
 	
-	elseif($type2 != null && $type2 == "type"){
+	elseif($type2 != null && $type1 == "type"){
 		$type2 = ucfirst($type2);
 		$result = executePlainSQL("SELECT pid,tname,picture FROM pokemon WHERE type2 = '" . $type2 . "'");
 		$search_result = executePlainSQL("SELECT COUNT(*) FROM pokemon WHERE type2 = '" . $type2 . "'");
