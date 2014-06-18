@@ -41,7 +41,7 @@
 
 	if(isset($_SESSION["username"]))
 	{	
-		echo "<h2 style='text-align:center;'>Welcome to your list of Pokemon {$_SESSION["username"]}</h2>";
+		echo "<h2 style='text-align:center;'>Welcome to your Pokemon Party<br> PokeMaster {$_SESSION["username"]}</h2>";
 		$trainer_info = executePlainSQL("SELECT * FROM party WHERE partyid = '{$_SESSION["username"]}'");
 		$row = OCI_Fetch_Array($trainer_info, OCI_BOTH); 
 		$party = explode("," , $row[1]);
