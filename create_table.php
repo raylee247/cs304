@@ -43,9 +43,11 @@
 				executePlainSQL ("CREATE TABLE pokemon (pid number(3,0),
 														tname varchar(30),
 														picture varchar(255),
-														type varchar(10),
+														type1 varchar(10),
+														type2 varchar(10),
 														PRIMARY KEY (pid),
-														FOREIGN KEY (type) REFERENCES type_is)");
+														FOREIGN KEY (type1) REFERENCES type_is(tname),
+														FOREIGN KEY (type2) REFERENCES type_is(tname)");
 				//executePlainSQL ("insert into pokemon values (1,1,1)");	
 				//executePlainSQL ("delete from pokemon where pid = 1");
 				echo "<br> all tables <br>";
@@ -126,6 +128,18 @@
 														PRIMARY KEY (lname),
 														FOREIGN KEY (lname) REFERENCES location
 																ON DELETE CASCADE)");
+																
+				executePlainSQL ("CREATE TABLE users (userid varchar(255),
+														password varchar(255),
+														partyid varchar(255),
+														PRIMARY KEY (userid),
+														foreign key (partyid) references party(partyid)
+																on delete cascade)");
+				
+				executePlainSQL ("CREATE TABLE party (partyid varchar(255),
+														party varchar(255),
+														PRIMARY KEY (partyid))");
+																
 				//executePlainSQL ("insert into location values (1,1)");
 														
 			 	OCILogoff($db_conn);
