@@ -43,39 +43,59 @@ Pokemon: <input type="text" name="pokemon">
 </form> 
 
 <form>
- Filter Pokemon by Type:
- <select name = "sort" id = "sort">
- <option value= "Grass"> Grass</option>
- <option value= "Fire"> Fire</option>
-  <option value= "Bug">  Bug </option>
-  <option value= "Poison">  Poison </option>
-  <option value= "Electric">  Electric </option>
-  <option value= "Normal"> Normal </option>
-  <option value= "Ground">  Ground </option>
-  <option value= "Fighting">  Fighting </option>
-  <option value= "Psychic"> Psychic </option>
-  <option value= "Ghost">  Ghost </option>
-  <option value= "Ice"> Ice </option>
-  <option value= "Dragon"> Dragon </option>
-  </select>
-  <input type = "submit" value = "search">
-  </form>
-  
-  <?php
- if(isset($_GET['sort'])){
-  $type = $_GET['sort'];
-  //echo $type;
-  //}
-  if($type !== null){
-  $result = executePlainSQL ("SELECT * FROM pokemon p1 WHERE NOT EXISTS(SELECT * FROM pokemon p2 WHERE type1 = '".$type."' AND NOT EXISTS(SELECT * FROM po    kemon p3 WHERE p1.type1 = p2.type1))");
- //echo $type;
-  //echo $result;
-  }else{
-  $result = executePlainSQL ("SELECT * FROM pokemon");
-  //echo $result;
-  }printPoke($result);
-  }
-  ?>
+	Filter Pokemon by Primary Type:
+            <select id="type1" name="type1">
+              <option value="type">Types</option>
+              <option value="normal">Normal</option>
+              <option value="fighting">Fighting</option>
+              <option value="flying">Flying</option>
+              <option value="poison">Poison</option>
+              <option value="ground">Ground</option>
+              <option value="rock">Rock</option>
+              <option value="bug">Bug</option>
+              <option value="ghost">Ghost</option>
+              <option value="fire">Fire</option>
+              <option value="water">Water</option>
+              <option value="grass">Grass</option>
+              <option value="electric">Electric</option>
+              <option value="psychic">Psychic</option>
+              <option value="ice">Ice</option>
+              <option value="dragon">Dragon</option>
+           </select> and Secondary Type:
+           <select id="type2" name="type2">
+              <option value="type">Types</option>
+              <option value="normal">Normal</option>
+              <option value="fighting">Fighting</option>
+              <option value="flying">Flying</option>
+              <option value="poison">Poison</option>
+              <option value="ground">Ground</option>
+              <option value="rock">Rock</option>
+              <option value="bug">Bug</option>
+              <option value="ghost">Ghost</option>
+              <option value="fire">Fire</option>
+              <option value="water">Water</option>
+              <option value="grass">Grass</option>
+              <option value="electric">Electric</option>
+              <option value="psychic">Psychic</option>
+              <option value="ice">Ice</option>
+              <option value="dragon">Dragon</option>
+           </select>
+           <input type="submit" value="search">
+</form>
+<form action="pokemon.php">
+    <input type="submit" name="legendary" value="legendary" onclick="insert()" />
+</form>
+
+
+<?php
+/*
+if (isset($_GET['sort'])){
+$type = $_GET['sort'];
+echo $type;
+}
+*/
+
+?>
 
 <?php
 if(isset($_SESSION["username"]) && $numofPoke < 6){
@@ -85,21 +105,55 @@ echo "<center>Your Party is full with 6 Pokemon, remove one Pokemon to add anoth
 ?>
 				<br>
 <?php
+	if(isset($_GET['legendary'])){
+			legendary();
+	}							
+																											
+	$type1 = $_GET['type1'];
+	$type2 = $_GET['type2'];
 	$pokemon = ucfirst(strtolower($_GET["pokemon"]));
 	if($pokemon != null){
 		//$pokemon = ucfirst($_POST["pokemon"]);
 		$pokemons = array_map('ucfirst', explode(" " , $pokemon));
-		$pokemon = implode(" " , $pokemons);
+		$pokemon = implode(" " , $pokemon);
 		$result = executePlainSQL("SELECT * FROM pokemon WHERE tname = '" . $pokemon . "' OR tname LIKE '%" . $pokemon . "%'");
 	}
-	else{
-		$result = executePlainSQL("SELECT * FROM pokemon WHERE pid > 0 ORDER BY pid");
+		
+	elseif($type1 != null && $type2 == "type"){
+		$type1 = ucfirst($type1);
+		$result = executePlainSQL("SELECT pid,tname,picture FROM pokemon WHERE type1 = '" . $type1 . "'");
+		$search_result = executePlainSQL("SELECT COUNT(*) FROM pokemon WHERE type1 = '" . $type1 . "'");
+		$count = OCI_Fetch_Array($search_result, OCI_BOTH);
+		echo "<br>" . $count[0] . " results found <br>";
 	}
+	
+	elseif($type2 != null && $type2 == "type"){
+		$type2 = ucfirst($type2);
+		$result = executePlainSQL("SELECT pid,tname,picture FROM pokemon WHERE type2 = '" . $type2 . "'");
+		$search_result = executePlainSQL("SELECT COUNT(*) FROM pokemon WHERE type2 = '" . $type2 . "'");
+		$count = OCI_Fetch_Array($search_result, OCI_BOTH);
+		echo "<br>" . $count[0] . " results found <br>";
+	}
+		
+	elseif($type1 != null && $type2 != null){
+		$type1 = ucfirst($type1); 
+		$type2 = ucfirst($type2);
+		$result = executePlainSQL("SELECT pid,tname,picture FROM pokemon WHERE type1 = '" . $type1 ."' AND type2 = '" . $type2 ."'");
+		$search_result = executePlainSQL("SELECT COUNT(*) FROM pokemon WHERE type1 = '" . $type1 ."' AND type2 = '" . $type2 ."'");
+		$count = OCI_Fetch_Array($search_result, OCI_BOTH);
+		echo "<br>" . $count[0] . " results found <br>";
+	}
+	
+	else{
+		$result = executePlainSQL("SELECT * FROM pokemon ORDER BY pid");
+	}
+		
 	printPoke($result);
 	
-	
-	//$result = executePlainSQL("select * from pokemon");
-	//printPoke($result);
+function legendary(){
+	$legendary = executePlainSQL("SELECT pid,tname,picture FROM legendary "); //Uses views
+	printPoke($legendary);
+}	
 	
 function printPoke($result){
 
@@ -121,6 +175,9 @@ function printPoke($result){
 	echo "</table>";
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) 
 	{
+		if((strpos($row[1],'Zero') === false) ){	  
+			
+		
 		$locQuery = executePlainSQL("select lname from poke_found where pid={$row[0]}");
 		$loc = OCI_Fetch_Array($locQuery, OCI_BOTH);
 	
@@ -147,6 +204,7 @@ function printPoke($result){
 		}
 		
 	echo "</tr>";								
+	}
 	}
 	echo '</table>';
 	echo '</div>';

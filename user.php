@@ -81,7 +81,7 @@ function printPoke($result)
 	{
 	echo "<tr>";
 	echo "<td><font size='5px'>Pokedex Number<br>{$row[0]}</font></td>";
-	echo "<td><font size='5px'>Name<br><a href = profile.php?name='{$row[1]}'>{$row[1]}</a></font></td>";
+	echo "<td><font size='5px'>Name<br><a href = profile.php?name={$row[1]}>{$row[1]}</a></font></td>";
 	echo "</tr>";
 	echo "<tr>";
 	echo "<td><img src='{$row[2]}' alt='picture'></td>";
