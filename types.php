@@ -18,7 +18,7 @@
 		</noscript>
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="cssmain/table.css" />
+		<link rel="stylesheet" href="cssmain/types.css" />
 	</head>
 	<body>
 	<!-- ********************************************************* -->
@@ -65,7 +65,16 @@
 							echo "<tr>";
 							for($x=0; $x < 16; $x++)
 							{
+
+								if($row[$x]==2)
+								echo "<td bgcolor='#00CC00'>{$row[$x]}</td>";
+								else if($row[$x]==.5)
+								echo "<td bgcolor='#FF0000'>{$row[$x]}</td>";
+								else if($row[$x]==0)
+								echo "<td bgcolor='#C2C2A3'>{$row[$x]}</td>";
+								else
 								echo "<td>{$row[$x]}</td>";
+								
 							}
 							echo "</tr>";
 						}
